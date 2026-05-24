@@ -1,0 +1,14 @@
+{
+  "name": "iptv-fleet",
+  "owner": {
+    "name": "mooizo",
+    "url": "https://github.com/mooizo"
+  },
+  "plugins": [
+    {
+      "name": "iptv-fleet",
+      "description": "Multi-country IPTV site automation. Slash commands, agents, and skills for managing the iptv-fleet monorepo.",
+      "source": "."
+    }
+  ]
+}
