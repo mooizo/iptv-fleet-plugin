@@ -2,15 +2,10 @@
   "name": "iptv-fleet",
   "version": "0.1.0",
   "description": "Multi-country IPTV site automation. Slash commands, agents, and skills for managing the iptv-fleet monorepo.",
-  "author": "mooizo",
-  "homepage": "https://github.com/mooizo/iptv-fleet-plugin",
-  "license": "UNLICENSED",
-  "requires": {
-    "mcp": ["semrush", "github", "gsc"],
-    "tools": ["gh", "pnpm", "wrangler"]
+  "author": {
+    "name": "mooizo",
+    "url": "https://github.com/mooizo"
   },
-  "companion_repos": {
-    "monorepo": "github:mooizo/iptv-fleet",
-    "seo_cache": "github:mooizo/seo-data-store"
-  }
+  "homepage": "https://github.com/mooizo/iptv-fleet-plugin",
+  "license": "UNLICENSED"
 }
