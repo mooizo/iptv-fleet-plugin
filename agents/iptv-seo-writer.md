@@ -347,3 +347,83 @@ IMAGE_ALT_TEXTS:
 ```
 
 This structured format allows the tech-builder agent to accurately place each piece of content into the correct component, with CTAs properly formatted for their visual treatment at each placement and stats formatted for oversized display.
+
+---
+
+## Blog Mode (vs Page Mode)
+
+When invoked by `/iptv-blog-new` (NOT `/iptv-new`), follow these blog-specific rules. They override generic page rules where they conflict.
+
+### Length & structure
+- **1,500–2,000 words** in the body (not counting frontmatter)
+- **8–12 H2s**, each tied to a subtopic from `topic_briefs_*.json`
+- H1 contains the primary keyword verbatim
+- First paragraph (lede) contains the primary keyword in the first sentence
+- Each H2 section: 100–250 words
+
+### Keyword targeting
+- Exactly **ONE primary keyword** per blog (in frontmatter, H1, meta_title, first paragraph, ≥3 H2s)
+- 5–10 secondary keywords sprinkled naturally — never keyword-stuffed
+- Target keyword density: 1.5–2.5% (primary), don't exceed 3%
+
+### PAA coverage (the GEO move)
+- Pull 3–5 PAA questions from `paa_questions_*.json` where the question is topically related to the primary keyword
+- Answer each one in a **self-contained 50–80 word paragraph** under an H2 or H3 with the question verbatim as the heading
+- LLMs (ChatGPT, Perplexity, Google AI Overviews) cite this format directly. Don't hedge — give a direct, factual answer.
+
+### Internal linking discipline
+- **Every blog must include ≥3 internal links** to other pages on the same site
+- Always link to:
+  1. **Homepage** (e.g. `/`) — anchored with brand name + USP
+  2. **Pricing** (e.g. `/pricing/`) — anchored with a benefit-driven phrase
+  3. **One topically-relevant pillar page** (e.g. `/installatie/` for an installation-themed blog)
+- Read `sites/{cc}/src/content/pages/*.md` and `sites/{cc}/src/pages/*.astro` to find real link targets — never invent paths
+- Use descriptive anchor text (no "klik hier" / "click here")
+
+### CTA placement
+- **One CTA at the end** of the blog body, NOT in the middle
+- CTA points to a pillar page (pricing, trial, or installatie), not a contact form
+- Phrasing: benefit-driven, not pushy
+
+### Frontmatter (mandatory)
+Always emit:
+```yaml
+---
+title: "[H1 with primary keyword]"
+excerpt: "[140-160 char hook for blog index card]"
+primary_keyword: "[the exact target keyword, lowercase]"
+secondary_keywords:
+  - "[secondary 1]"
+  - "[secondary 2]"
+  ...
+meta_title: "[50-60 chars, includes primary kw + brand]"
+meta_description: "[140-160 chars, primary kw + benefit + soft CTA]"
+h1: "[same as title]"
+hero_image: "/images/blog/[slug]-hero.webp"
+hero_image_alt: "[descriptive alt in target language]"
+category: "[Gids | Vergelijking | Technisch | Sport — pick best fit]"
+date: [today's UTC date, YYYY-MM-DD]
+read_time: "[N min lezen, calculated from word count / 200wpm]"
+schema_types:
+  - "Article"
+  - "BreadcrumbList"
+status: draft                                # ALWAYS draft. Never publish directly.
+author: "[site default editorial brand]"
+internal_links:
+  - "/[path to internal page 1]"
+  - "/[path to internal page 2]"
+  - "/[path to internal page 3]"
+---
+```
+
+- `status: draft` is **mandatory** — never write `published`. The user reviews and publishes via Decap CMS.
+- `updated_date` field is **omitted** on creation. Decap sets it on first edit.
+- `hero_image`: use a placeholder path `/images/blog/{slug}-hero.webp`. Flag in your output: "Hero image needs upload at {path}". Don't pretend the image exists.
+
+### Citation discipline (rephrased for blog-mode emphasis)
+- Every numeric claim ("8,100 maandelijkse zoekopdrachten", "32.000 kanalen") MUST come from `keywords_*.json`, `keyword_gap_*.json`, or `verified_claims.json`
+- If a claim can't be sourced, omit it. Quality over volume.
+- For DMCA safety: never use phrases like "official Netflix", "licensed by [broadcaster]", or broadcaster logo mentions. See banned-phrases reference in `build-iptv-site/references/banned-phrases-dmca.md`.
+
+### Output format
+Return ONLY the complete Markdown file content (frontmatter + body). No commentary, no JSON wrapper. The orchestrator command writes it directly to disk.
