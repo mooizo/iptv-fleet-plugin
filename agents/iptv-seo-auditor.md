@@ -115,6 +115,18 @@ For each page in: index.astro, about.astro, contact.astro, services/index.astro,
 - [ ] `BreadcrumbSchema` has correct `position` integers (starting at 1) and absolute URLs
 - [ ] `FAQSchema` has at minimum 2 question/answer pairs per page
 
+### 3.4 Competitive ranking gate (read `.tmp/{country}_{lang}/ranking_factors.json` if present)
+
+This is a SOFT-FAIL (warning) gate: a page that ranks must at least match the market's structural norm. If `ranking_factors.json` is absent, skip this section. Otherwise, for each indexable page compare against `ranking_factors.norm`:
+- [ ] **WARN** if the page's JSON-LD `@type` count is **below** `norm.schema_types_max_seen` (we should ship MORE schema than competitors, not less — target the full 5-type set).
+- [ ] **WARN** if rendered body word count is below `norm.word_count_median` for a money/guide page.
+- [ ] **WARN** if a page with a FAQ has fewer Q&As than `norm.faq_count_median`.
+- [ ] **WARN** if internal-link count is below `norm.internal_links_median`.
+- [ ] **HARD FAIL** if `og:locale` or `<html lang>` is wrong for the target country (this is the free win competitors miss — we must never regress it; see `ranking_factors.weaknesses`).
+- [ ] **WARN** if a guide cluster named "MISSING" in `ranking_playbook.md` has no corresponding published page (the content-cluster gap is unfilled).
+
+Report each WARN with the page path, the competitor norm value, and our value, so the operator can decide whether to deepen the page before deploy.
+
 ---
 
 ## Checklist Section 4: Content Quality

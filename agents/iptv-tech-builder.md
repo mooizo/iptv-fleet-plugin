@@ -12,6 +12,21 @@ You will be given all business data (name, services, locations, colors, contact 
 
 ---
 
+## Competitor-informed structural targets (read `ranking_factors.json` first)
+
+Before scaffolding pages, read `.tmp/{country}_{lang}/ranking_factors.json` (from competitor-analysis Stage 4) and `ranking_playbook.md`. These set the on-page structural bar generated pages must **match or beat** — the goal is to out-structure the market's actual rankers, not guess. Apply:
+
+- **Schema set (beat the market):** every page emits the full set via the shared SEO engine — `WebSite` + `Organization` + `Product` (pricing pages) + `FAQPage` (any page with a FAQ) + `BreadcrumbList`. Competitors typically ship only 2 types (`ranking_factors.norm.schema_types_max_seen`); we ship 5. Device/install pages use `HowTo` (not a bare `ItemList`).
+- **Word-count floor:** body content ≥ `ranking_factors.norm.word_count_median`; aim for `word_count_p75`. Don't pad — this is a target for the writer's copy budget, enforced in audit.
+- **FAQ:** any FAQ section has ≥ `ranking_factors.norm.faq_count_median` Q&As, marked with `FAQPage` schema.
+- **Internal links:** ≥ `ranking_factors.norm.internal_links_median` per page (a clean Astro build with the locked silo blocks easily clears this).
+- **Locale correctness (free win):** the SEO engine already emits the correct `og:locale` + `<html lang>`. Many competitors get this wrong (`en_US`/`en_GB` on a non-English site — see `ranking_factors.weaknesses`). Never regress it.
+- **Guide pages:** scaffold the app/device-guide cluster pages that `03_intent_mapping` added to `blog_backlog` from the content-cluster gap. These are the on-site ranking lever.
+
+If `ranking_factors.json` is absent (e.g. a rapid test build), fall back to the fleet defaults: 5-schema set, 1,200-word floor, 5 FAQs, correct locale.
+
+---
+
 ## Design Philosophy
 
 Every decision you make should reinforce these five principles. They are not optional extras; they are the baseline standard.

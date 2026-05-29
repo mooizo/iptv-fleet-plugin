@@ -52,6 +52,7 @@ Never fabricate Dutch keyword volumes, KD scores, or PAA questions. Quality over
 6. **40% minimum differentiation** between any two similar pages (service A vs service B, city A vs city B). Track this actively.
 7. **Every service page and location page gets 3 CTAs**: above the fold, mid-page, bottom.
 8. **Match the tone** specified in onboarding. Professional = measured, credible. Friendly = warm, conversational. Authoritative = confident, expert. Local = community-first.
+9. **Out-cover the competitors' weaknesses.** Read `.tmp/{country}_{lang}/ranking_playbook.md` ("Exploit list") and `ranking_factors.json.weaknesses`. For the page you're writing, explicitly beat the relevant competitor weakness: if a competitor's page on this topic is thin (<900 words), write deeper; if it has no FAQ, add a strong FAQ; if its content is stale, lead with current ("2026") specifics. When writing an app/device **guide** from the content-cluster backlog, hit the playbook's word-count + FAQ targets and name the concrete steps (install → playlist/M3U → EPG → troubleshooting → legal note) — this is the cluster that wins the low-KD long-tail. Never name or disparage the competitor in published copy; just out-cover them.
 
 ---
 

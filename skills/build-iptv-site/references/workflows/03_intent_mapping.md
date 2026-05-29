@@ -6,7 +6,8 @@
 
 ## Required Inputs
 - `.tmp/{country}_{lang}/keywords.json` (from workflow 01)
-- `.tmp/{country}_{lang}/gap_analysis.md` (from workflow 02)
+- `.tmp/{country}_{lang}/gap_analysis.md` (from workflow 02 — positioning)
+- `.tmp/{country}_{lang}/ranking_factors.json` + `ranking_playbook.md` (from workflow 02 Stage 4 — the on-page ranking-factor teardown). **This drives the content-cluster gap below.**
 
 ---
 
@@ -71,11 +72,23 @@ From leftover informational and long-tail content keywords:
 4. Cap blog posts at 15 for launch. The rest go into `.tmp/{country}_{lang}/blog_backlog.json` for phase 2.
 
 Blog post selection priority:
-1. Gap analysis "Priority Content Gaps" first
-2. Questions from DataForSEO related_keywords (high intent for featured snippets)
-3. **Live-research topics from `tools/blog_topic_research.py`** (see below)
-4. Device install guides not yet covered as pages
-5. Seasonal / event-based topics (only if within 60 days of event)
+1. **Competitor content-cluster gap from `ranking_factors.json` (highest priority — see Step 4a)**
+2. Gap analysis "Priority Content Gaps" (positioning)
+3. Questions from DataForSEO related_keywords (high intent for featured snippets)
+4. **Live-research topics from `tools/blog_topic_research.py`** (see below)
+5. Device install guides not yet covered as pages
+6. Seasonal / event-based topics (only if within 60 days of event)
+
+### Step 4a — Fill the competitor content-cluster gap (the real on-site ranking lever)
+
+`ranking_factors.json.content_clusters` lists the guide clusters the market's rankers own (e.g. `app_guides: [tivimate, ibo-player, iptv-smarters, m3u-playlist]`, `device_guides`, `listicles`) and `owned_by` (which competitor dominates each). The `ranking_playbook.md` "Content-cluster map" section names the clusters a **fresh site would be MISSING**.
+
+For each missing cluster entry, create a `/blog/{slug}/` (or device page) target in `blog_backlog`:
+- Match it to a keyword from `keywords.json` for volume/KD (these are often **low-KD long-tail, KD 2–13 — the easiest wins**; do not skip them for being low-volume — the value is the aggregate).
+- Set `type: app_guide` / `device_guide` / `listicle`, a HowTo/Article-oriented H2 outline, target word count = `ranking_factors.norm.word_count_p75`, and `min_faq = ranking_factors.norm.faq_count_median`.
+- `angle`: how we out-cover the owning competitor (cite the matching `weaknesses` entry — e.g. "meiniptvanbieter's TiviMate page has en_GB locale + only Article schema; we ship correct locale + Article+FAQPage").
+
+This is what turns `/iptv-new` from "build the locked page set" into "build the locked page set **plus the guide cluster the market actually rewards**". Cap total launch posts per the rule below, but always include the missing-cluster guides ahead of generic topics.
 
 ### Optional: run blog topic research for live demand signal
 
@@ -143,6 +156,7 @@ Before handoff to writer, verify:
 - [ ] Homepage primary keyword is the highest-score transactional term
 - [ ] At least 5 blog posts are queued (not 15 if market is small — minimum 5)
 - [ ] Every "Priority Content Gap" from gap_analysis.md is reflected in the page map
+- [ ] **Every MISSING content cluster from `ranking_playbook.md` has a guide target in `blog_backlog`** (the app/device-guide engine — the on-site ranking lever)
 
 ---
 
