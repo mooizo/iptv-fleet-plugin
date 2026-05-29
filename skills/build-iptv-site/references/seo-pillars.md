@@ -21,9 +21,11 @@ This doc is the framework; the per-pillar execution detail lives in the referenc
 - Per-site **class salt + layout variants** break the template-network footprint (custom-class Jaccard ≈0 between sites).
 - **Every page must be able to earn its own rankings — or it's dead weight.** Multi-page (one intent per page) is the proven winner's architecture in this market (DataForSEO ranked-pages, DE scan: smart-iptv-pro = 14 ranking pages, meiniptvanbieter = 20, both getting most non-homepage traffic from the app/device-guide cluster). **But page count is not a virtue.** The failure mode: iptvhafen.to has ~57 pages yet **only its homepage ranks** — the other ~56 pull ~zero organic traffic (dead crawl budget + thin-content risk). So: ship **intent-complete, not page-count-padded** — every page needs (a) a real target keyword no other page owns (no cannibalization) and (b) internal-link equity flowing into it. A page that can't rank shouldn't ship. The lever that *activates* a broad multi-page site is Off-Page (links) — see Pillar 4; until authority exists, concentrate internal-link equity on the core money pages + homepage.
 
+- **Domain resilience (infrastructure, not on-page):** avoid country-code TLDs (`.de`, `.nl`, …) for IPTV — ccTLD registries (DENIC etc.) suspend IPTV/streaming domains fast on abuse complaints. Prefer a neutral gTLD (`.com`, `.store`, `.tv`) or a lax-enforcement ccTLD. Evidence: the most resilient, largest competitor (iptvhafen) deliberately runs on **`.to`** (Tonga); the exposed `.de` competitors are the more takedown-vulnerable. A suspended domain = total ranking loss overnight, so this is a foundational availability decision before any SEO investment. Use a privacy-friendly registrar; keep the brand domain separate from the operator/admin domain (see Phase 8 `cmsfleet.xyz`).
+
 **Enforced / detailed by:** `seo-audit-checklist.md §1`, `workflows/05_build_astro.md`, `workflows/08_deploy_cloudflare.md`, `tools/check-seo-lock.mjs`, `tools/footprint-report.mjs`, `page-architecture.md`.
 
-**Open edge:** blog hero images are placeholders (`/images/blog/*.webp` 404) — generate before a true launch. INP isn't yet measured per-template in CI.
+**Open edge:** blog hero images are placeholders (`/images/blog/*.webp` 404) — generate before a true launch. INP isn't yet measured per-template in CI. **DE's configured domain `iptvklar.de` is a ccTLD — reconsider to a gTLD before committing/buying (takedown risk).**
 
 ---
 
