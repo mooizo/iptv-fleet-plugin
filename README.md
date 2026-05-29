@@ -16,6 +16,12 @@ Pairs with two companion repos:
 | `/iptv-new {cc}` | Scaffold a new country site (Phase A questionnaire, then full build pipeline) |
 | `/iptv-deploy {cc}` | Build + deploy a country to Cloudflare Pages, submit sitemap to GSC |
 | `/iptv-refresh-seo {cc}` | Force-refresh Semrush data via the seo-data-store skill |
+| `/iptv-domain-search {cc}` | Find the best SEO domain for a market — keyword-EMD candidates, live availability (RDAP) + price (Firecrawl), ranked with the SEO-vs-takedown trade-off |
+| `/iptv-blog-new {cc} [topic]` | Draft a new blog post from frozen keyword data (saves as draft) |
+| `/iptv-blog-publish {cc}` | List drafts and flip selected ones to published |
+| `/iptv-backlink-prospects {cc}` | Build a backlink outreach prospect list from competitor backlink data |
+| `/iptv-geo-baseline {cc}` | Capture an LLM-citation (GEO / Share-of-Synthesis) baseline via DataForSEO |
+| `/iptv-rank-track {cc}` | Pull current SERP positions for top keywords (daily rank tracking) |
 
 ### Skills (auto-triggered)
 - **`build-iptv-site`** — 8-step pipeline: research → content → build → audit → deploy
