@@ -104,6 +104,7 @@ Every failure that teaches something new **must** be written back into the relev
 
 ## Hard Rules
 
+0. **Read `references/seo-pillars.md` first — it is the governing SEO framework** (Technical · Content · On-Page · Off-Page · GEO) every build is measured against. Each page, content piece, and off-site action must trace to a pillar.
 1. **Single language, single country. Never emit `hreflang` alternates or `/en/`, `/fr/` prefixes.** The site is one locale.
 2. **Never write generic IPTV filler** ("best IPTV service", "enjoy your favorite shows"). Every paragraph must be specific to the brand, country, and differentiators.
 3. **Pricing is shown in the target country's local currency with correct symbol placement.**
