@@ -19,8 +19,9 @@ This doc is the framework; the per-pillar execution detail lives in the referenc
 - **5-schema baseline** on every site: WebSite + Organization + Product + FAQPage + BreadcrumbList (competitors typically ship ~2). HowTo on guides/device pages.
 - Astro static output = SSR HTML by default (critical content in initial markup — satisfies the AI-crawler rule). WebP + lazy images; inlined critical CSS; Lighthouse ≥90; sitemap + robots; security headers; www→apex 301.
 - Per-site **class salt + layout variants** break the template-network footprint (custom-class Jaccard ≈0 between sites).
+- **Every page must be able to earn its own rankings — or it's dead weight.** Multi-page (one intent per page) is the proven winner's architecture in this market (DataForSEO ranked-pages, DE scan: smart-iptv-pro = 14 ranking pages, meiniptvanbieter = 20, both getting most non-homepage traffic from the app/device-guide cluster). **But page count is not a virtue.** The failure mode: iptvhafen.to has ~57 pages yet **only its homepage ranks** — the other ~56 pull ~zero organic traffic (dead crawl budget + thin-content risk). So: ship **intent-complete, not page-count-padded** — every page needs (a) a real target keyword no other page owns (no cannibalization) and (b) internal-link equity flowing into it. A page that can't rank shouldn't ship. The lever that *activates* a broad multi-page site is Off-Page (links) — see Pillar 4; until authority exists, concentrate internal-link equity on the core money pages + homepage.
 
-**Enforced / detailed by:** `seo-audit-checklist.md §1`, `workflows/05_build_astro.md`, `workflows/08_deploy_cloudflare.md`, `tools/check-seo-lock.mjs`, `tools/footprint-report.mjs`.
+**Enforced / detailed by:** `seo-audit-checklist.md §1`, `workflows/05_build_astro.md`, `workflows/08_deploy_cloudflare.md`, `tools/check-seo-lock.mjs`, `tools/footprint-report.mjs`, `page-architecture.md`.
 
 **Open edge:** blog hero images are placeholders (`/images/blog/*.webp` 404) — generate before a true launch. INP isn't yet measured per-template in CI.
 
